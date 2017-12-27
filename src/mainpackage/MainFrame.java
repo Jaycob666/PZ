@@ -11,6 +11,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import mainpackage.algorithms.Quicksort;
+import mainpackage.algorithms.Shellsort;
 import mainpackage.util.FileHandler;
 
 /**
@@ -18,8 +20,9 @@ import mainpackage.util.FileHandler;
  * @author Jaykob
  */
 public class MainFrame extends javax.swing.JFrame {
-    int[] numbers;
+    int[] numbers, sortedNumbers;
     String filePath;
+    byte algorithmFlag;
     /**
      * Creates new form MainFrame
      */
@@ -216,15 +219,24 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void GOButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GOButtonActionPerformed
-        // TODO add your handling code here:
+        
+        if (algorithmFlag == 0) {
+            sortedNumbers = Quicksort.sort(numbers);
+        } else {
+            sortedNumbers = Shellsort.sort(numbers);
+        }
+        
+        for(int i : sortedNumbers)
+            System.out.print(i + " ");
     }//GEN-LAST:event_GOButtonActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-
+        this.algorithmFlag = 0;
         GIFlabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gifs/quicksort.gif")));
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        this.algorithmFlag = 1;
         GIFlabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gifs/shllsort.gif")));
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
