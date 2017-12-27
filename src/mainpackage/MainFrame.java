@@ -20,9 +20,11 @@ import mainpackage.util.FileHandler;
  * @author Jaykob
  */
 public class MainFrame extends javax.swing.JFrame {
+
     int[] numbers, sortedNumbers;
     String filePath;
     byte algorithmFlag;
+
     /**
      * Creates new form MainFrame
      */
@@ -219,15 +221,23 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void GOButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GOButtonActionPerformed
-        
+        long startTime = System.nanoTime();
+
         if (algorithmFlag == 0) {
             sortedNumbers = Quicksort.sort(numbers);
         } else {
             sortedNumbers = Shellsort.sort(numbers);
         }
-        
-        for(int i : sortedNumbers)
+
+        long stopTime = System.nanoTime();
+        long executionTime = stopTime - startTime;
+        jTextField1.setText(executionTime + " ms");
+
+        System.out.println();
+
+        for (int i : sortedNumbers) {
             System.out.print(i + " ");
+        }
     }//GEN-LAST:event_GOButtonActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
